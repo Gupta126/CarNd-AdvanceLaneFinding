@@ -57,16 +57,16 @@ The following image shows the result of applying the camera calibration to one o
 
 The code used to experiment with color, gradients, and thresholds could be found on the [Advance Lane Finding](Advance%20Lane%20Finding.ipynb).
 
-A color transformation to HLS was done `In [6]` and the S channel was selected because it shows more contracts on the lane lines as shown in the next figure:
+A color transformation to HLS was done `In [15]` and the S channel was selected because it shows more contracts on the lane lines as shown in the next figure:
 
 ![S Channel](output_images/schannel.png)
 
 After the color transformation had been done, it was time for gradients. The following gradients were calculated:
 
-- Sobel X and Sobel Y: `In [10]` and `In [11]`
-- Magnitude : `In [13]`
-- Gradient direction : `In [14]`
-- Combination of all the above (Sobel X and Sobel Y) or (Magnitude and Gradient): `In [16]`
+- Sobel X and Sobel Y: `In [45]` and `In [46]`
+- Magnitude : `In [48]`
+- Gradient direction : `In [50]`
+- Combination of all the above (Sobel X and Sobel Y) or (Magnitude and Gradient): `In [51]`
 
 After a few back-and-forward exploration with thresholds, the following picture will show the different gradients on some test images side-by-side:
 
@@ -86,7 +86,7 @@ The perspective transformation code could be found on [Advance Lane Finding](Adv
 
 ![Straignt lane lines](output_images/straightlines.png)
 
-Four points where selected on the first image as the source of the perspective transformation. Those points are highlighted on the following image (`In [4]`):
+Four points where selected on the first image as the source of the perspective transformation. Those points are highlighted on the following image (`In [54]`):
 
 ![Transformation points](output_images/transformationpoints.png)
 
@@ -99,7 +99,7 @@ The destination points for the transformation where to get a clear picture of th
 |(1250, 720)|(maxX - 200, maxY)|
 |(190, 720)|(200, maxY)|
 
-Using `cv2.getPerspectiveTransform`, a transformation matrix was calculated, and an inverse transformation matrix was also calculated to map the points back to the original space (`In [5]`). The result of the transformation on a test image is the following:
+Using `cv2.getPerspectiveTransform`, a transformation matrix was calculated, and an inverse transformation matrix was also calculated to map the points back to the original space (`In [55]`). The result of the transformation on a test image is the following:
 
 ![Transformation](output_images/transformation.png)
 
