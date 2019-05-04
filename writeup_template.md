@@ -51,15 +51,15 @@ I then used the output `objpoints` and `imgpoints` to compute the camera calibra
 The camera calibration calculation was done on the [Advance Lane Finding](Advance%20Lane%20Finding.ipynb). The result is load with `pickle` on `In[2]`.
 The following image shows the result of applying the camera calibration to one of the test images:
 
-![Image distortion correction](images/undist.png)
+![Image distortion correction](output_images/undist.png)
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image. Provide an example of a binary image result.
 
-The code used to experiment with color, gradients, and thresholds could be found on the [02-Color Transform and Gradients Threshold notebook](02-Color%20Transform%20and%20Gradients%20Threshold.ipynb).
+The code used to experiment with color, gradients, and thresholds could be found on the [Advance Lane Finding](Advance%20Lane%20Finding.ipynb).
 
 A color transformation to HLS was done `In [6]` and the S channel was selected because it shows more contracts on the lane lines as shown in the next figure:
 
-![S Channel](images/schannel.png)
+![S Channel](output_images/schannel.png)
 
 After the color transformation had been done, it was time for gradients. The following gradients were calculated:
 
@@ -70,11 +70,11 @@ After the color transformation had been done, it was time for gradients. The fol
 
 After a few back-and-forward exploration with thresholds, the following picture will show the different gradients on some test images side-by-side:
 
-![Side by Side gradients](images/sidebyside.png)
+![Side by Side gradients](output_images/sidebyside.png)
 
 The full combination of these gradients leads to a "noisy" binary image. That is why on the main notebook [Advanced Lane Lines notebook](Advance%20Lane%20Lines.ipynb). Only the combination of Sobel X and Sobel Y was used to continue with the pipeline. The following image shows the binary image obtained with that combination on the test images:
 
-![Final gradient calculation](images/finalgradient.png)
+![Final gradient calculation](output_images/finalgradient.png)
 
 On the [Advanced Lane Lines notebook](Advance%20Lane%20Lines.ipynb), the code used to calculate this images is from `In [7]` to `In [13]`.
 
@@ -82,11 +82,11 @@ On the [Advanced Lane Lines notebook](Advance%20Lane%20Lines.ipynb), the code us
 
 The perspective transformation code could be found on [03-Perspective transformation notebook](03-Perspective%20transformation.ipynb). The image used were the one with straight lane lines:
 
-![Straignt lane lines](images/straightlines.png)
+![Straignt lane lines](output_images/straightlines.png)
 
 Four points where selected on the first image as the source of the perspective transformation. Those points are highlighted on the following image (`In [4]`):
 
-![Transformation points](images/transformationpoints.png)
+![Transformation points](output_images/transformationpoints.png)
 
 The destination points for the transformation where to get a clear picture of the street:
 
@@ -99,17 +99,17 @@ The destination points for the transformation where to get a clear picture of th
 
 Using `cv2.getPerspectiveTransform`, a transformation matrix was calculated, and an inverse transformation matrix was also calculated to map the points back to the original space (`In [5]`). The result of the transformation on a test image is the following:
 
-![Transformation](images/transformation.png)
+![Transformation](output_images/transformation.png)
 
 The transformation matrix and the inverse transformation matrix was stored using `pickle` to be used on the main notebook [Advanced Lane Lines notebook](Advance%20Lane%20Lines.ipynb). The following picture shows the binary images results after the perspective transformation:
 
-![Binary images transformed](images/binarytransformed.png)
+![Binary images transformed](output_images/binarytransformed.png)
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
 The line detection code could be found at `In [17]` of the [Advanced Lane Lines notebook](Advance%20Lane%20Lines.ipynb). The algorithm calculates the histogram on the X axis. Finds the picks on the right and left side of the image, and collect the non-zero points contained on those windows. When all the points are collected, a polynomial fit is used (using `np.polyfit`) to find the line model. On the same code, another polynomial fit is done on the same points transforming pixels to meters to be used later on the curvature calculation. The following picture shows the points found on each window, the windows and the polynomials:
 
-![Polynomial fit](images/polyfit.png)
+![Polynomial fit](output_images/polyfit.png)
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle on the center.
 
@@ -133,7 +133,7 @@ The code used to calculate this could be found at `In [20]`.
 
 To display the lane lines on the image, the polynomials where evaluated on a lineal space of the Y coordinates. The generated points where mapped back to the image space using the inverse transformation matrix generated by the perspective transformation. The code used for this operation could be found on `In [19]`, and the following images are examples of this mapping:
 
-![Lane lines fit](images/lanelines.png)
+![Lane lines fit](output_images/lanelines.png)
 
 
 ### Pipeline (video)
