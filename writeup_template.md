@@ -72,15 +72,17 @@ After a few back-and-forward exploration with thresholds, the following picture 
 
 ![Side by Side gradients](output_images/sidebyside.png)
 
-The full combination of these gradients leads to a "noisy" binary image. That is why on the main notebook [Advanced Lane Lines notebook](Advance%20Lane%20Lines.ipynb). Only the combination of Sobel X and Sobel Y was used to continue with the pipeline. The following image shows the binary image obtained with that combination on the test images:
+The full combination of these gradients leads to a "noisy" binary image. That is why on the main notebook [Advance Lane Finding](Advance%20Lane%20Finding.ipynb). Only the combination of Sobel X and Sobel Y was used to continue with the pipeline. The following image shows the binary image obtained with that combination on the test images:
 
 ![Final gradient calculation](output_images/finalgradient.png)
+![Final gradient calculation](output_images/finalgradient1.png)
 
-On the [Advanced Lane Lines notebook](Advance%20Lane%20Lines.ipynb), the code used to calculate this images is from `In [7]` to `In [13]`.
+
+On the [Advance Lane Finding](Advance%20Lane%20Finding.ipynb)., the code used to calculate this images is from `In [7]` to `In [13]`.
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provided an example of a transformed image.
 
-The perspective transformation code could be found on [03-Perspective transformation notebook](03-Perspective%20transformation.ipynb). The image used were the one with straight lane lines:
+The perspective transformation code could be found on [Advance Lane Finding](Advance%20Lane%20Finding.ipynb). The image used were the one with lane lines:
 
 ![Straignt lane lines](output_images/straightlines.png)
 
@@ -92,22 +94,22 @@ The destination points for the transformation where to get a clear picture of th
 
 |Source|Destination|
 |-----:|----------:|
-|(585, 455)|(200,0)|
-|(705, 455)|(maxX - 200, 0)|
-|(1130, 720)|(maxX - 200, maxY)|
+|(585, 475)|(200,0)|
+|(705, 475)|(maxX - 200, 0)|
+|(1250, 720)|(maxX - 200, maxY)|
 |(190, 720)|(200, maxY)|
 
 Using `cv2.getPerspectiveTransform`, a transformation matrix was calculated, and an inverse transformation matrix was also calculated to map the points back to the original space (`In [5]`). The result of the transformation on a test image is the following:
 
 ![Transformation](output_images/transformation.png)
 
-The transformation matrix and the inverse transformation matrix was stored using `pickle` to be used on the main notebook [Advanced Lane Lines notebook](Advance%20Lane%20Lines.ipynb). The following picture shows the binary images results after the perspective transformation:
+The transformation matrix and the inverse transformation matrix was stored using `pickle` to be used on the main notebook [Advance Lane Finding](Advance%20Lane%20Finding.ipynb). The following picture shows the binary images results after the perspective transformation:
 
 ![Binary images transformed](output_images/binarytransformed.png)
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
-The line detection code could be found at `In [17]` of the [Advanced Lane Lines notebook](Advance%20Lane%20Lines.ipynb). The algorithm calculates the histogram on the X axis. Finds the picks on the right and left side of the image, and collect the non-zero points contained on those windows. When all the points are collected, a polynomial fit is used (using `np.polyfit`) to find the line model. On the same code, another polynomial fit is done on the same points transforming pixels to meters to be used later on the curvature calculation. The following picture shows the points found on each window, the windows and the polynomials:
+The line detection code could be found at `In [17]` of the [Advance Lane Finding](Advance%20Lane%20Finding.ipynb). The algorithm calculates the histogram on the X axis. Finds the picks on the right and left side of the image, and collect the non-zero points contained on those windows. When all the points are collected, a polynomial fit is used (using `np.polyfit`) to find the line model. On the same code, another polynomial fit is done on the same points transforming pixels to meters to be used later on the curvature calculation. The following picture shows the points found on each window, the windows and the polynomials:
 
 ![Polynomial fit](output_images/polyfit.png)
 
