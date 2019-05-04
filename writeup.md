@@ -78,7 +78,7 @@ The full combination of these gradients leads to a "noisy" binary image. That is
 ![Final gradient calculation](output_images/finalgradient1.png)
 
 
-On the [Advance Lane Finding](Advance%20Lane%20Finding.ipynb)., the code used to calculate this images is from `In [7]` to `In [13]`.
+On the [Advance Lane Finding](Advance%20Lane%20Finding.ipynb)., the code used to calculate this images is from `In [14]` to `In [52]`.
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provided an example of a transformed image.
 
@@ -147,7 +147,4 @@ After some refactoring of the code found at `In [66]`, the project video was pro
 ### Discussion
 
 #### 1. Briefly, discuss any problems/issues you faced in your implementation of this project. Where will your pipeline likely fail? What could you do to make it more robust?
-
-- There are a few improvements that could be done on the performance of the process due to repetitive calculations.
-- More information could be use from frame to frame to improve the robustness of the process.
-- Other gradients could be use (Ex. Laplacian) to improve the line detection.
+- Ploated area on road is fluctuate that need to improve it.
