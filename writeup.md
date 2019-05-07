@@ -149,3 +149,9 @@ After some refactoring of the code found at `In [66]`, the project video was pro
 #### 1. Briefly, discuss any problems/issues you faced in your implementation of this project. Where will your pipeline likely fail? What could you do to make it more robust?
 - Ploated area on road is fluctuate that need to improve it.
 - The first problem is to find the correct source and destination points. It is a try and error approach and even if few pixels up and down can make a big impact. The second problem is when I was trying to use various combinations of color channels the final combination did not work in almost all conditions. It was again by try and error I figured out bad frames and checked my pipleline and made changes to and/or operators and thresholds. The next challenge and the biggest problem is to stop flickering of lane lines on concrete surface or when the car comes out from the shadow.
+
+- I tried my pipeline on the challenge video and I noticed it failed. So I will be experimenting with the challenge video for sure. It is quite possible that left lane line to center is of different color and from center to right lane is of different color as in the challenge video and it is likely to fail there. Also in case of a mountain terrain, it is quite likely to fail.
+
+- To make it more robust and stop the flickering of lane lines, we can average out the points from the previous frames to have a smooth transition per frame.
+also calculate distance from center while car on mountains/slop on road.
+i tried to find calulation but cound not find.
